@@ -10,8 +10,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <% 
-	  	String uid=(String)session.getAttribute("uid");
- if(uid==null)
+	  	int uid=(Integer)session.getAttribute("uid");
+ if(uid==0)
  {
 	 response.sendRedirect("/");
 }

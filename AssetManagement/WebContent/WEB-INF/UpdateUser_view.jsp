@@ -41,8 +41,8 @@ $(document).ready(function() {
 
 </head>
 <% 
-	  	String uid=(String)session.getAttribute("uid");
- if(uid==null)
+	  	int uid=(Integer)session.getAttribute("uid");
+ if(uid==0)
  {
 	 response.sendRedirect("/");
 }

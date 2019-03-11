@@ -17,6 +17,28 @@ import bean.usersBean;
 
 public class EmployeeDao {
 	
+	// emp check
+	public int LoginCheck(int id,String password,String Desgination)	 
+	{
+		
+		System.out.println("emp dao call");
+	     int x;
+		SessionFactory sf=new AnnotationConfiguration().configure().buildSessionFactory();
+		Session ss=sf.openSession();
+		Criteria ct=ss.createCriteria(usersBean.class);
+		ct.add(Restrictions.eq("emp_id",id));
+		ct.add(Restrictions.eq("password",password));
+		ct.add(Restrictions.eq("Designation",Desgination));
+		ArrayList<usersBean> list=(ArrayList<usersBean>)ct.list();
+		if(list.isEmpty())
+			x=0;
+		else
+			x=1;
+  	ss.close();
+		return x;
+	}
+
+	
 	//get all data from Assets table 
 	public ArrayList<AssetsBean> getAssetsByaid() {
 		SessionFactory sf=new AnnotationConfiguration().configure().buildSessionFactory();

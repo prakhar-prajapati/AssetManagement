@@ -13,7 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.AssetsBean;
 import bean.usersBean;
+import dao.EmployeeDao;
+import dao.ManagerDao;
 import dao.MyDao;
+import dao.SupportDao;
 
 @Controller
 //@SessionAttributes("uid")
@@ -107,16 +110,23 @@ public class MainController {
 			  mv.addObject("msg","Login failed , try again...");
 	         }
 		}
-	    else if(Designation!="assets")
+	    else if(Designation!="admin")
 		 {
 	    	int y=0;
 			if(Designation.equals("employee")) 
 			{
-	    	 y=obj.LoginCheck(id,password,Designation);
+				EmployeeDao e=new EmployeeDao();
+	    	 y=e.LoginCheck(id,password,Designation);
 			}
 			if(Designation.equals("manager")) 
 			{
-	    	 y=obj.mangerCheck(id,password,Designation);
+			ManagerDao m=new ManagerDao();	
+	    	 y=m.mangerCheck(id,password,Designation);
+			}
+			if(Designation.equals("support")) 
+			{
+				SupportDao s=new SupportDao();
+	    	 y=s.supportCheck(id,password,Designation);
 			}
 			if(y==1)
 	 		  {   
@@ -202,26 +212,26 @@ public class MainController {
      return mv;
     }
  	
- 	  @RequestMapping("/LoginCheck")
- 	    public ModelAndView loginCheck(@RequestParam int id,@RequestParam String password,@RequestParam String Designation )
- 	    {   
- 	      ModelAndView mv=null;
- 	    MyDao obj=new MyDao();
- 	    	System.out.println("login check");
- 	    int x=obj.LoginCheck(id,password,Designation);
- 		 if(x==1)
- 		  {   
- 			 mv=new ModelAndView("Home");
- 			 mv.addObject("msg","Login success...");
- 			 
- 		  }else if(x==0)
- 		  {
- 			 mv=new ModelAndView("Login");
- 			  mv.addObject("msg","Login failed , try again...");
- 		  }
- 		 return mv;
- 	    }
- 	
+// 	  @RequestMapping("/LoginCheck")
+// 	    public ModelAndView loginCheck(@RequestParam int id,@RequestParam String password,@RequestParam String Designation )
+// 	    {   
+// 	      ModelAndView mv=null;
+// 	    MyDao obj=new MyDao();
+// 	    	System.out.println("login check");
+// 	    int x=obj.LoginCheck(id,password,Designation);
+// 		 if(x==1)
+// 		  {   
+// 			 mv=new ModelAndView("Home");
+// 			 mv.addObject("msg","Login success...");
+// 			 
+// 		  }else if(x==0)
+// 		  {
+// 			 mv=new ModelAndView("Login");
+// 			  mv.addObject("msg","Login failed , try again...");
+// 		  }
+// 		 return mv;
+// 	    }
+// 	
 
  	   
 }

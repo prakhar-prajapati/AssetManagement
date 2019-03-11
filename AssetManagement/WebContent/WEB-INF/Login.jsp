@@ -8,7 +8,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet"> 
-    
+  <%
+response.addHeader("pragma", "no-cache");
+response.addHeader("cache-control", "no-store");
+response.addHeader("expire", "0");
+%>  
 </head>
 <body>
 ${msg}

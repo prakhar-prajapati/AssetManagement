@@ -8,8 +8,8 @@
 </head>
 <body>
 <% 
-	  	String uid=(String)session.getAttribute("uid");
- if(uid==null)
+	  	Integer uid=(Integer)session.getAttribute("uid");
+ if(uid==0)
  {
 	 response.sendRedirect("/");
 }
